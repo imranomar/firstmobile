@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a10" title="">
+  <file path="simple_server.php" hash="cb981fcf9cfcc5fe69e8dede1515fa8c" package="Default">
+    <docblock line="2">
+      <description><![CDATA[simple_erver.php]]></description>
+      <long-description><![CDATA[]]></long-description>
+    </docblock>
+    <include line="7" type="Include Once" package="Default">
+      <name>config.php</name>
+    </include>
+    <include line="8" type="Include Once" package="Default">
+      <name>geo_app.php</name>
+    </include>
+    <include line="9" type="Include Once" package="Default">
+      <name>geo_app_soap_wrapper.php</name>
+    </include>
+    <include line="10" type="Include Once" package="Default">
+      <name>geonames_data_provider.php</name>
+    </include>
+  </file>
+  <file path="config.php" hash="6cb8aa3080d825983a11a3cf84f78033" package="Default">
+    <docblock line="2">
+      <description><![CDATA[config.php]]></description>
+      <long-description><![CDATA[]]></long-description>
+    </docblock>
+  </file>
+  <file path="geo_app_soap_wrapper.php" hash="da1d684cd10a9142e03ca4f3e16fdebf" package="Default">
+    <docblock line="2">
+      <description><![CDATA[geo_app_soap_wrapper.php]]></description>
+      <long-description><![CDATA[]]></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="24" package="Default">
+      <extends/>
+      <name>geo_app_soap_wrapper</name>
+      <full_name>\geo_app_soap_wrapper</full_name>
+      <docblock line="6">
+        <description><![CDATA[geo_app_soap_wrapper]]></description>
+        <long-description><![CDATA[<p>This class wraps the main geo_app class with a soap wrapper, enabling its functions to be available as a soap service
+This class is not concerned about how the geo_app class get its information which it could be geting from geonames.com
+or a local database or another other data_provider.</p>
+
+<ul>
+<li>set_geo_app</li>
+<li>geolocate</li>
+<li>describe</li>
+<li>initiate</li>
+</ul>]]></long-description>
+        <tag line="6" name="author" description="Imran Bukhsh &lt;imranomar@gmail.com&gt;"/>
+        <tag line="6" name="since" description="1.0"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="31" namespace="global" package="Default">
+        <name>$geo_app</name>
+        <default><![CDATA[]]></default>
+        <docblock line="26">
+          <description><![CDATA[points to the geo_app class responsible of getting the information through on its data_provider]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="access" description="private"/>
+          <tag line="26" name="var" description="" type="\geo_app">
+            <type by_reference="false">\geo_app</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="46" package="Default">
+        <name>set_geo_app</name>
+        <full_name>set_geo_app</full_name>
+        <docblock line="34">
+          <description><![CDATA[set_geo_app()]]></description>
+          <long-description><![CDATA[<p>this function set the geo_app objects this class is going to wrap</p>]]></long-description>
+          <tag line="34" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="34" name="since" description="1.0"/>
+          <tag line="34" name="param" description="The geo_app object this class is going to wrap" type="\geo_app" variable="$tmp_geo_app">
+            <type by_reference="false">\geo_app</type>
+          </tag>
+        </docblock>
+        <argument line="46">
+          <name>$tmp_geo_app</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="66" package="Default">
+        <name>geolocate</name>
+        <full_name>geolocate</full_name>
+        <docblock line="51">
+          <description><![CDATA[geolocate()]]></description>
+          <long-description><![CDATA[<p>this function returns the geonameid based on the latitude and longitude values passes of a location. this function
+is not concerned about logic behind how the information is retrieved by the geo_app object</p>]]></long-description>
+          <tag line="51" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="51" name="since" description="1.0"/>
+          <tag line="51" name="param" description="The latitude value of the location being queries about" type="double" variable="$lat">
+            <type by_reference="false">double</type>
+          </tag>
+          <tag line="51" name="param" description="The longitude value of the location being queries about" type="double" variable="$lng">
+            <type by_reference="false">double</type>
+          </tag>
+          <tag line="51" name="return" description="$geonameid The geonameid of the location" type="\long">
+            <type by_reference="false">\long</type>
+          </tag>
+        </docblock>
+        <argument line="66">
+          <name>$lat</name>
+          <default><![CDATA[]]></default>
+          <type>\double</type>
+        </argument>
+        <argument line="66">
+          <name>$lng</name>
+          <default><![CDATA[]]></default>
+          <type>\double</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="86" package="Default">
+        <name>describe</name>
+        <full_name>describe</full_name>
+        <docblock line="71">
+          <description><![CDATA[describe()]]></description>
+          <long-description><![CDATA[<p>this function returns an array of the description of a location based on the geonameid passed.  this function
+is not concerned about logic behind how the information is retrieved by the geo_app object</p>]]></long-description>
+          <tag line="71" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="71" name="since" description="1.0"/>
+          <tag line="71" name="param" description="the geonameid of the location whos description is needed" type="\long" variable="$geonameId">
+            <type by_reference="false">\long</type>
+          </tag>
+          <tag line="71" name="return" description="an array consisting of the toponym,lat,lng of the location" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="86">
+          <name>$geonameId</name>
+          <default><![CDATA[]]></default>
+          <type>\long</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="101" package="Default">
+        <name>initiate</name>
+        <full_name>initiate</full_name>
+        <docblock line="91">
+          <description><![CDATA[initate()]]></description>
+          <long-description><![CDATA[<p>start the soap server and passes this class to it.</p>]]></long-description>
+          <tag line="91" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="91" name="since" description="1.0"/>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="51" code="50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $lat in geolocate()</error>
+      <error line="51" code="50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $lng in geolocate()</error>
+    </parse_markers>
+  </file>
+  <file path="geonames_data_provider.php" hash="27a4870ff0f416116757c05207bbe5a9" package="Default">
+    <include line="6" type="Include Once" package="Default">
+      <name>i_geo_data_provider.php</name>
+      <docblock line="2">
+        <description><![CDATA[geo_app_soap_wrapper.php]]></description>
+        <long-description><![CDATA[]]></long-description>
+      </docblock>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="24" package="Default">
+      <extends/>
+      <implements>\i_geo_data_provider</implements>
+      <name>geonames_data_provider</name>
+      <full_name>\geonames_data_provider</full_name>
+      <docblock line="8">
+        <description><![CDATA[geonames_data_provider]]></description>
+        <long-description><![CDATA[<p>This class implements the i_geo_data_provider interface and provides
+methods to call the rest based funcationality provided by geonames.com</p>
+
+<ul>
+<li>geolocate</li>
+<li>describe</li>
+</ul>]]></long-description>
+        <tag line="8" name="author" description="Imran Bukhsh &lt;imranomar@gmail.com&gt;"/>
+        <tag line="8" name="since" description="1.0"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="31" namespace="global" package="Default">
+        <name>$user_name</name>
+        <default><![CDATA[]]></default>
+        <docblock line="26">
+          <description><![CDATA[used to store the username to the rest api at geonames.com]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="access" description="private"/>
+          <tag line="26" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="45" package="Default">
+        <name>geonames_data_provider</name>
+        <full_name>geonames_data_provider</full_name>
+        <docblock line="33">
+          <description><![CDATA[geonames_data_provider()]]></description>
+          <long-description><![CDATA[<p>the constructor accepts the username needed for the rest based geonames.com service</p>]]></long-description>
+          <tag line="33" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="33" name="since" description="1.0"/>
+          <tag line="33" name="param" description="the username used to access the rest based service at geonames.com" type="string" variable="$tmp_user_name">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="45">
+          <name>$tmp_user_name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="65" package="Default">
+        <name>geolocate</name>
+        <full_name>geolocate</full_name>
+        <docblock line="50">
+          <description><![CDATA[geolocate()]]></description>
+          <long-description><![CDATA[<p>this function returns the geonameid based on the latitude and longitude values passes of a location</p>]]></long-description>
+          <tag line="50" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="50" name="since" description="1.0"/>
+          <tag line="50" name="param" description="The latitude value of the location being queries about" type="double" variable="$lat">
+            <type by_reference="false">double</type>
+          </tag>
+          <tag line="50" name="param" description="The longitude value of the location being queries about" type="double" variable="$lng">
+            <type by_reference="false">double</type>
+          </tag>
+          <tag line="50" name="return" description="$geonameid The geonameid of the location" type="\long">
+            <type by_reference="false">\long</type>
+          </tag>
+        </docblock>
+        <argument line="65">
+          <name>$lat</name>
+          <default><![CDATA[]]></default>
+          <type>\double</type>
+        </argument>
+        <argument line="65">
+          <name>$lng</name>
+          <default><![CDATA[]]></default>
+          <type>\double</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="115" package="Default">
+        <name>describe</name>
+        <full_name>describe</full_name>
+        <docblock line="101">
+          <description><![CDATA[describe()]]></description>
+          <long-description><![CDATA[<p>this function returns an array of the description of a location based on the geonameid passed</p>]]></long-description>
+          <tag line="101" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="101" name="since" description="1.0"/>
+          <tag line="101" name="param" description="the geonameid of the location whos description is needed" type="\long" variable="$geonameId">
+            <type by_reference="false">\long</type>
+          </tag>
+          <tag line="101" name="return" description="an array consisting of the toponym,lat,lng of the location" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="115">
+          <name>$geonameId</name>
+          <default><![CDATA[]]></default>
+          <type>\long</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="167" package="Default">
+        <name>isXML</name>
+        <full_name>isXML</full_name>
+        <docblock line="151">
+          <description><![CDATA[isXML()]]></description>
+          <long-description><![CDATA[<p>this function accepts a string of xml and checks if its properly formated. Returns 1 if alright or an
+error message string with line number if if its not
+Note: this function can be moved out into a helder class</p>]]></long-description>
+          <tag line="151" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="151" name="since" description="1.0"/>
+          <tag line="151" name="param" description="the xml to be checked, passed as a string" type="string" variable="$xml">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="151" name="return" description="1 if the xml is alright" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="151" name="return" description="a string error message if its not" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="167">
+          <name>$xml</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file geonames_data_provider.php</error>
+      <error line="50" code="50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $lat in geolocate()</error>
+      <error line="50" code="50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $lng in geolocate()</error>
+    </parse_markers>
+  </file>
+  <file path="simple_client.php" hash="e2f32fa3a6180a57d0ad7b62ff660cff" package="Default">
+    <docblock line="2">
+      <description><![CDATA[simpleclient.]]></description>
+      <long-description><![CDATA[<p>.php</p>]]></long-description>
+    </docblock>
+  </file>
+  <file path="geo_app.php" hash="4a83e56bcb0fef348f0377191244de52" package="Default">
+    <docblock line="2">
+      <description><![CDATA[geo_app.php]]></description>
+      <long-description><![CDATA[]]></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="23" package="Default">
+      <extends/>
+      <name>geo_app</name>
+      <full_name>\geo_app</full_name>
+      <docblock line="7">
+        <description><![CDATA[geo_app]]></description>
+        <long-description><![CDATA[<p>This class is the main geo application. Is is a simple class used to seperate the data and other communication layers.
+This class uses a geo_data_provider type to provide the functionality of finding the gelocation and descriptions of locations</p>
+
+<ul>
+<li>geolocate</li>
+<li>describe</li>
+</ul>]]></long-description>
+        <tag line="7" name="author" description="Imran Bukhsh &lt;imranomar@gmail.com&gt;"/>
+        <tag line="7" name="since" description="1.0"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="31" namespace="global" package="Default">
+        <name>$geo_data_provider</name>
+        <default><![CDATA[]]></default>
+        <docblock line="25">
+          <description><![CDATA[points to an object that implements the i_geo_data_provider interface.]]></description>
+          <long-description><![CDATA[<p>the object
+is responsible for getting the data for this class</p>]]></long-description>
+          <tag line="25" name="access" description="private"/>
+          <tag line="25" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="46" package="Default">
+        <name>set_data_provider</name>
+        <full_name>set_data_provider</full_name>
+        <docblock line="33">
+          <description><![CDATA[set_data_provider()]]></description>
+          <long-description><![CDATA[<p>this function sets the data_provider for this class. A dataprovider can be any class that implements the
+i_geo_data_provider interface and is used to get geodata from any source e.g. geonames.com rest service</p>]]></long-description>
+          <tag line="33" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="33" name="since" description="1.0"/>
+          <tag line="33" name="param" description="Any object that implements the i_geo_data_provider interface" type="object" variable="$data_provider">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="46">
+          <name>$data_provider</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="67" package="Default">
+        <name>geolocate</name>
+        <full_name>geolocate</full_name>
+        <docblock line="51">
+          <description><![CDATA[geolocate()]]></description>
+          <long-description><![CDATA[<p>this function returns the geonameid based on the latitude and longitude values passes of a location. the
+logic of how the information is retrieved lies in the data_provider attached to this class and is not a concern
+of this class</p>]]></long-description>
+          <tag line="51" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="51" name="since" description="1.0"/>
+          <tag line="51" name="param" description="The latitude value of the location being queries about" type="double" variable="$lat">
+            <type by_reference="false">double</type>
+          </tag>
+          <tag line="51" name="param" description="The longitude value of the location being queries about" type="double" variable="$lng">
+            <type by_reference="false">double</type>
+          </tag>
+          <tag line="51" name="return" description="$geonameid The geonameid of the location" type="\long">
+            <type by_reference="false">\long</type>
+          </tag>
+        </docblock>
+        <argument line="67">
+          <name>$lat</name>
+          <default><![CDATA[]]></default>
+          <type>\double</type>
+        </argument>
+        <argument line="67">
+          <name>$lng</name>
+          <default><![CDATA[]]></default>
+          <type>\double</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="87" package="Default">
+        <name>describe</name>
+        <full_name>describe</full_name>
+        <docblock line="72">
+          <description><![CDATA[describe()]]></description>
+          <long-description><![CDATA[<p>this function returns an array of the description of a location based on the geonameid passed. the
+logic of how the information is retrieved lies in the data_provider attached to this class and is not a concern
+of this class</p>]]></long-description>
+          <tag line="72" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="72" name="since" description="1.0"/>
+          <tag line="72" name="param" description="the geonameid of the location whos description is needed" type="\long" variable="$geonameId">
+            <type by_reference="false">\long</type>
+          </tag>
+          <tag line="72" name="return" description="an array consisting of the toponym,lat,lng of the location" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="87">
+          <name>$geonameId</name>
+          <default><![CDATA[]]></default>
+          <type>\long</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="51" code="50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $lat in geolocate()</error>
+      <error line="51" code="50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $lng in geolocate()</error>
+    </parse_markers>
+  </file>
+  <file path="i_geo_data_provider.php" hash="c7681194feaf6a194652b4017f8fe800" package="Default">
+    <docblock line="2">
+      <description><![CDATA[i_geo_data_provider.php]]></description>
+      <long-description><![CDATA[]]></long-description>
+    </docblock>
+    <interface namespace="global" line="25" package="Default">
+      <name>i_geo_data_provider</name>
+      <full_name>\i_geo_data_provider</full_name>
+      <docblock line="7">
+        <description><![CDATA[i_geo_data_provider]]></description>
+        <long-description><![CDATA[<p>this interface provides the necessary methods that need to be implmented by any data_provider for
+the gro_app class and this app. This eases creation of new data_sources instead of only relying on the geonames.com
+datasource. Example in the future there can be a class which get the geolocations / descriptions from a local database.
+In that case the the class retrieving data for the database would only need to implement this interface to be able to
+work this this app.</p>
+
+<ul>
+<li>geolocate</li>
+<li>describe</li>
+</ul>]]></long-description>
+        <tag line="7" name="author" description="Imran Bukhsh &lt;imranomar@gmail.com&gt;"/>
+        <tag line="7" name="since" description="1.0"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="42" package="Default">
+        <name>geolocate</name>
+        <full_name>geolocate</full_name>
+        <docblock line="27">
+          <description><![CDATA[geolocate()]]></description>
+          <long-description><![CDATA[<p>should return the geonameid based on the latitude and longitude values passes of a location</p>]]></long-description>
+          <tag line="27" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="27" name="since" description="1.0"/>
+          <tag line="27" name="param" description="The latitude value of the location being queries about" type="double" variable="$lat">
+            <type by_reference="false">double</type>
+          </tag>
+          <tag line="27" name="param" description="The longitude value of the location being queries about" type="double" variable="$lng">
+            <type by_reference="false">double</type>
+          </tag>
+          <tag line="27" name="return" description="$geonameid The geonameid of the location" type="\long">
+            <type by_reference="false">\long</type>
+          </tag>
+        </docblock>
+        <argument line="42">
+          <name>$lat</name>
+          <default><![CDATA[]]></default>
+          <type>\double</type>
+        </argument>
+        <argument line="42">
+          <name>$lng</name>
+          <default><![CDATA[]]></default>
+          <type>\double</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="58" package="Default">
+        <name>describe</name>
+        <full_name>describe</full_name>
+        <docblock line="44">
+          <description><![CDATA[describe()]]></description>
+          <long-description><![CDATA[<p>should return an array of the description of a location based on the geonameid passed</p>]]></long-description>
+          <tag line="44" name="author" description="Imran Omar Bukhsh &lt;imranomar@gmail.com&gt;"/>
+          <tag line="44" name="since" description="1.0"/>
+          <tag line="44" name="param" description="the geonameid of the location whos description is needed" type="\long" variable="$geonameId">
+            <type by_reference="false">\long</type>
+          </tag>
+          <tag line="44" name="return" description="an array consisting of the toponym,lat,lng of the location" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="58">
+          <name>$geonameId</name>
+          <default><![CDATA[]]></default>
+          <type>\long</type>
+        </argument>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="27" code="50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $lat in geolocate()</error>
+      <error line="27" code="50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $lng in geolocate()</error>
+    </parse_markers>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <namespace name="global" full_name="global"/>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

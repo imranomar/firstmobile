@@ -1,0 +1,68 @@
+<definitions name="FirstMobile"
+   targetNamespace="http://localhost:8080/firtmobile/firstmobile.wsdl"
+   xmlns="http://schemas.xmlsoap.org/wsdl/"
+   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:tns="http://localhost:8080/firtmobile/firstmobile.wsdl"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+
+    
+   <message name="describeRequest">
+        <part name="geonameId" type="xsd:anyType"></part>
+    </message>
+    <message name="describeResponse">
+        <part name="value1" type="xsd:string"></part>
+    </message>
+   
+    <message name="geolocateRequest">
+        <part name="lat" type="xsd:double"></part>
+        <part name="lng" type="xsd:double"></part>
+    </message>
+    <message name="geolocateResponse">
+        <part name="value" type="xsd:long"></part>
+    </message>
+
+<portType name="my_geo_soap_wrapperPortType">
+    <operation name="describe">
+        <input message="tns:describeRequest"></input>
+        <output message="tns:describeResponse"></output>
+    </operation>
+    <operation name="geolocate">
+        <input message="tns:geolocateRequest"></input>
+        <output message="tns:geolocateResponse"></output>
+    </operation>
+</portType>
+
+
+<binding name="my_geo_soap_wrapperBinding" type="tns:my_geo_soap_wrapperPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http">
+        
+    </soap:binding>
+
+<operation name="describe">
+    <soap:operation soapAction="describe"></soap:operation>
+    <input>
+        <soap:body namespace="urn://localhost/firstmobile" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></soap:body>
+    </input>
+    <output>
+        <soap:body namespace="urn://localhost/firstmobile" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></soap:body>
+    </output>
+</operation>
+<operation name="geolocate">
+    <soap:operation soapAction="geolocate"></soap:operation>
+    <input>
+        <soap:body namespace="urn://localhost/firstmobile" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></soap:body>
+    </input>
+    <output>
+        <soap:body namespace="urn://localhost/firstmobile" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></soap:body>
+    </output>
+</operation>
+</binding>
+
+<service name="FirstMobileTestService">
+<port name="my_geo_soap_wrapperPort" binding="tns:my_geo_soap_wrapperBinding">
+<soap:address location="http://localhost/firstmobile/"></soap:address></port>
+</service>
+
+
+</definitions>
